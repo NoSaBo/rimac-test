@@ -17,7 +17,7 @@ export default function Home() {
           href="tel:014116001"
           className="text-lg font-medium text-gray-900 hover:text-gray-700"
         >
-          📞 (01) 411 6001
+          (01) 411 6001
         </a>
       </div>
     </header>
