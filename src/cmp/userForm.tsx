@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAppData } from "@/context/AppDataContext";
 
-type UserFormProps = {};
-
-export default function UserForm({}: UserFormProps) {
+export default function UserForm() {
   const [docType, setDocType] = useState("DNI");
   const [docNumber, setDocNumber] = useState("");
   const [phone, setPhone] = useState("");
@@ -13,6 +12,7 @@ export default function UserForm({}: UserFormProps) {
   const [touched, setTouched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { setUserData } = useAppData();
 
   const isDocNumberValid = /^\d{8}$/.test(docNumber);
   const isPhoneValid = /^\d{9}$/.test(phone);
@@ -24,8 +24,11 @@ export default function UserForm({}: UserFormProps) {
     if (!isValid) return;
     setIsLoading(true);
     try {
-      const response = await fetch("/api/user");
+      const response = await fetch("/api/user").then((res) => res.json());
+      const userData = { ...response, document: docNumber, phone };
+      setUserData(userData);
     } catch (error) {
+      console.error("Error fetching user data:", error);
       setIsLoading(false);
       return;
     }

@@ -1,24 +1,30 @@
+"use client";
 import Image from "next/image";
 import FamilyImage from "/public/img/family.png";
 import Navbar from "@/cmp/navbar";
 import Footer from "@/cmp/footer";
 import UserForm from "@/cmp/userForm";
+import { useDevice } from "@/context/DeviceContext";
 
 export default function Home() {
+  const { isMobile } = useDevice();
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F8F9FF]">
       <Navbar />
       <main className="flex-1 flex flex-col md:flex-row pt-4">
         {/* Left section */}
-        <section className="flex-1 flex justify-center p-6">
-          <div className="max-w-lg">
-            <Image
-              src={FamilyImage}
-              alt="Family insurance"
-              className="rounded-xl shadow-md"
-            />
-          </div>
-        </section>
+        {!isMobile && (
+          <section className="flex-1 flex justify-center p-6">
+            <div className="max-w-lg">
+              <Image
+                src={FamilyImage}
+                alt="Family insurance"
+                className="rounded-xl shadow-md"
+              />
+            </div>
+          </section>
+        )}
 
         {/* Right section */}
         <section className="flex-1 flex p-6 text-black md:ml-6">
