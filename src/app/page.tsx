@@ -5,6 +5,7 @@ import Navbar from "@/cmp/navbar";
 import Footer from "@/cmp/footer";
 import UserForm from "@/cmp/userForm";
 import { useDevice } from "@/context/DeviceContext";
+import Separator from "@/cmp/separator";
 
 export default function Home() {
   const { isMobile } = useDevice();
@@ -29,18 +30,46 @@ export default function Home() {
         {/* Right section */}
         <section className="flex-1 flex p-6 text-black md:ml-6">
           <div className="max-w-sm">
-            <div className="mb-6">
-              <span className="text-base font-semibold bg-linear-to-r from-[#00F4E2] to-[#00FF7F] px-2 py-1 rounded-sm">
-                Seguro Salud Flexible
-              </span>
-              <h1 className="text-4xl font-bold mt-3">
-                Creado para ti y tu familia
-              </h1>
-              <p className="text-gray-600 text-base mt-2">
-                Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe
-                nuestra asesoría, 100% online.
-              </p>
-            </div>
+            {isMobile && (
+              <>
+                <div className="flex flex-row items-center">
+                  <div className="flex-1 mb-6">
+                    <span className="text-xs font-semibold bg-linear-to-r from-[#00F4E2] to-[#00FF7F] px-2 py-1 rounded-sm">
+                      Seguro Salud Flexible
+                    </span>
+                    <h1 className="text-2xl font-bold mt-3">
+                      Creado para ti y tu familia
+                    </h1>
+                  </div>
+                  <div className="flex flex-1 justify-center mb-6">
+                    <Image
+                      src={FamilyImage}
+                      alt="Family insurance"
+                      className="rounded-xl shadow-md"
+                    />
+                  </div>
+                </div>
+                <Separator />
+                <p className="text-gray-600 text-base mt-2">
+                  Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe
+                  nuestra asesoría, 100% online.
+                </p>
+              </>
+            )}
+            {!isMobile && (
+              <div className="mb-6">
+                <span className="text-base font-semibold bg-linear-to-r from-[#00F4E2] to-[#00FF7F] px-2 py-1 rounded-sm">
+                  Seguro Salud Flexible
+                </span>
+                <h1 className="text-4xl font-bold mt-3">
+                  Creado para ti y tu familia
+                </h1>
+                <p className="text-gray-600 text-base mt-2">
+                  Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe
+                  nuestra asesoría, 100% online.
+                </p>
+              </div>
+            )}
             <UserForm />
           </div>
         </section>

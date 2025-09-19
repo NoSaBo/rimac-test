@@ -15,7 +15,7 @@ export default function Home() {
           height={42}
         />
       </div>
-      {isMobile && <Separator color={"#FFFFFF"} />}
+      {isMobile && <Separator color={"#2B304E"} />}
       <p>© {new Date().getFullYear()} RIMAC Seguros y Reaseguros</p>
     </footer>
   );
