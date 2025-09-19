@@ -28,17 +28,21 @@ export default function PlanSelection({
           className="bg-white drop-shadow-[0_0px_10px_rgba(174,172,243,0.25)] text-lg text-black text-left w-sm py-10 px-10 rounded-2xl"
         >
           <h1 className="text-xl mb-2 font-bold">{plan.name}</h1>
-          <p className="text-xs">COSTO DEL PLAN</p>
+          <p className="text-xs text-gray-500">COSTO DEL PLAN</p>
 
           <div className="flex items-baseline gap-2">
             {discount ? (
-              <span className="text-2xl">
-                ${Math.round(plan.price * (1 - discount / 100))}
-              </span>
+              <div className="flex flex-col">
+                <span className="line-through text-gray-500 text-xs">
+                  ${plan.price} antes
+                </span>
+                <span className="text-xl font-bold">
+                  ${Math.round(plan.price * (1 - discount / 100)).toFixed(2)} al mes
+                </span>
+              </div>
             ) : (
-              <span className="text-2xl">${plan.price}</span>
+              <span className="text-xl font-bold">${plan.price} al mes</span>
             )}
-            <span className="text-sm font-normal">al mes</span>
           </div>
           <Separator />
           <div className="mb-4">
